@@ -6,8 +6,8 @@ const router = express.Router()
 
 const cookieOptions = {
     httpOnly: true,
-    sameSite:'Lax',
-    secure: false,
+    sameSite: isProduction ? 'none' : 'lax',
+    secure: isProduction,
     maxAge: 60 * 60 * 1000,
 }
 
@@ -31,7 +31,7 @@ router.post('/login', async (req, res) => {
 })
 
 router.post('/logout', requireAuth, (req, res) => {
-    res.clearCookie('token', { httpOnly: true, sameSite: 'lax', secure: false})
+    res.clearCookie('token', cookieOptions)
     res.json({ message: 'Logged out'})
 })
 
