@@ -1,4 +1,4 @@
-const API = 'http://localhost:3000/api'
+const API = 'https://notely-backend-7b79.onrender.com/api'
 
 async function request(path, options = {}) {
     const res = await fetch(`${API}${path}`, {
